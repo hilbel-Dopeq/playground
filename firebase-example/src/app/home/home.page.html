@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
+  Available Users
 
   <ion-list>
     <ion-item-sliding *ngFor="let user of users">
@@ -19,8 +19,9 @@
       </ion-item>
     </ion-item-sliding>
   </ion-list>
+
+  Available Tasks
   <ion-list>
-   
     <ng-container *ngIf="!todos || todos.length == 0">
       <div *ngFor="let n of [0,1,2]" padding>
         <ion-skeleton-text></ion-skeleton-text>
@@ -54,5 +55,11 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  <ion-fab left vertical="bottom" slot="fixed">
+      <ion-fab-button color="dark" routerLink="/userDetails" routerDirection="forward">
+        <ion-icon name="person-add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   
 </ion-content>
