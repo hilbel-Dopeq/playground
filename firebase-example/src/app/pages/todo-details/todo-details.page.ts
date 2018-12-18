@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Todo, TodoService } from './../../services/todo.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
+import { UserService, User } from 'src/app/services/user.service';
 
 
 @Component({
@@ -11,10 +12,10 @@ import { NavController, LoadingController } from '@ionic/angular';
 })
 export class TodoDetailsPage implements OnInit {
 
-  users = [
-    {id: 1, label: 'Johny'},
-    {id: 2, label: 'Jane'},
-    {id: 3, label: 'Dominique'}
+  users: User[] = [
+    {id: '1', name: 'Johny', createdAt: null},
+    {id: '2', name: 'Jane', createdAt: null},
+    {id: '3', name: 'Dominique', createdAt: null}
   ];
 
   selectedId = this.users[0].id;
@@ -23,13 +24,13 @@ export class TodoDetailsPage implements OnInit {
     task: 'test',
     createdAt: new Date().getTime(),
     priority: 2,
-    userName: this.users[this.selectedId].label
+    userName: this.users[this.selectedId].name
   };
 
   todoId = null;
 
   constructor(private route: ActivatedRoute, private nav: NavController, private todoService: TodoService,
-    private loadingController: LoadingController) {
+    private loadingController: LoadingController, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -38,6 +39,10 @@ export class TodoDetailsPage implements OnInit {
       console.log('This.todo is found, id: ', this.todoId);
       this.loadTodo();
     }
+
+    this.userService.getUsers().subscribe(res => {
+      this.users = res;
+    });
   }
 
   async loadTodo () {

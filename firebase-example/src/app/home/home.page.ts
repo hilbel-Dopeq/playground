@@ -19,6 +19,7 @@ export class HomePage implements OnInit {
     });
 
     this.userService.getUsers().subscribe(res => {
+      console.log(res);
       this.users = res;
     });
   }

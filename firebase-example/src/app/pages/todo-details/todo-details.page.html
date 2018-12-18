@@ -19,7 +19,7 @@
       <ion-label>Select User</ion-label>
       <ion-select [(ngModel)]="selectedId" placeholder="Select">
           <ion-select-option *ngFor="let user of users" [value]="user.id">
-              {{user.label}}
+              {{user.name}}
           </ion-select-option>
       </ion-select>
   </ion-item>

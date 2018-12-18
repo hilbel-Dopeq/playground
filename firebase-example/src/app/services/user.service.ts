@@ -19,7 +19,9 @@ export class UserService {
 
   constructor(db: AngularFirestore) {
     this.usersCollection = db.collection<User>('users');
+  }
 
+  getUsers() {
     this.users = this.usersCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -29,9 +31,6 @@ export class UserService {
         });
       })
     );
-  }
-
-  getUsers() {
     return this.users;
   }
 

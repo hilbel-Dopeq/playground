@@ -27,6 +27,7 @@ export class TodoService {
         return actions.map(a => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
+          console.log(a);
           return { id, ...data };
         });
       })
