@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo, TodoService } from './../../services/todo.service'
+import { Todo, TodoService } from './../../services/todo.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-todo-details',
@@ -10,22 +11,28 @@ import { NavController, LoadingController } from '@ionic/angular';
 })
 export class TodoDetailsPage implements OnInit {
 
+  users = [
+    {id: 1, label: 'Johny'},
+    {id: 2, label: 'Jane'},
+    {id: 3, label: 'Dominique'}
+  ];
+
+  selectedId = this.users[0].id;
+
   todo: Todo = {
     task: 'test',
     createdAt: new Date().getTime(),
-    priority: 2
+    priority: 2,
+    userName: this.users[this.selectedId].label
   };
 
   todoId = null;
 
   constructor(private route: ActivatedRoute, private nav: NavController, private todoService: TodoService,
     private loadingController: LoadingController) {
-
   }
 
   ngOnInit() {
-    console.log('OnInit in TodoDetailsPage');
-
     this.todoId = this.route.snapshot.params['id'];
     if (this.todoId) {
       console.log('This.todo is found, id: ', this.todoId);

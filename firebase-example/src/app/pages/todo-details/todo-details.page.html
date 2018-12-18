@@ -15,6 +15,14 @@
     <ion-item>
       <ion-input required type="number" placeholder="Priority" [(ngModel)]="todo.priority"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label>Select User</ion-label>
+      <ion-select [(ngModel)]="selectedId" placeholder="Select">
+          <ion-select-option *ngFor="let user of users" [value]="user.id">
+              {{user.label}}
+          </ion-select-option>
+      </ion-select>
+  </ion-item>
   </ion-list>
   <ion-button expand="full" (click)="saveTodo()">Save</ion-button>
 </ion-content>
