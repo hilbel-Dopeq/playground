@@ -12,19 +12,15 @@ import { UserService, User } from 'src/app/services/user.service';
 })
 export class TodoDetailsPage implements OnInit {
 
-  users: User[] = [
-    {id: '1', name: 'Johny', createdAt: null},
-    {id: '2', name: 'Jane', createdAt: null},
-    {id: '3', name: 'Dominique', createdAt: null}
-  ];
+  users: User[];
 
-  selectedId = this.users[0].id;
+  selectedId = undefined;
 
   todo: Todo = {
-    task: 'test',
+    task: 'sample',
     createdAt: new Date().getTime(),
     priority: 2,
-    userName: this.users[this.selectedId].name
+    userName: undefined
   };
 
   todoId = null;
@@ -58,6 +54,7 @@ export class TodoDetailsPage implements OnInit {
   }
 
   async saveTodo() {
+    this.todo.userName = this.users.filter(user => user.id === this.selectedId)[0].name;
 
     const loading = await this.loadingController.create({
       message: 'Saving Todo..'
