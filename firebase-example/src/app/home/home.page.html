@@ -10,6 +10,17 @@
   The world is your oyster.
 
   <ion-list>
+    <ion-item-sliding *ngFor="let user of users">
+      <ion-item lines="inset" button [routerLink]="['/userDetails', user.id]">
+        <ion-label>
+          {{ user.name }}
+          <p>{{ user.createdAt | date:'short' }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-list>
+   
     <ng-container *ngIf="!todos || todos.length == 0">
       <div *ngFor="let n of [0,1,2]" padding>
         <ion-skeleton-text></ion-skeleton-text>
