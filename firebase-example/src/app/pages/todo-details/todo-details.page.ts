@@ -10,6 +10,7 @@ export class TodoDetailsPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('OnInit in TodoDetailsPage');
   }
 
 }
